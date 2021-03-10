@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: spring-boot-camunda
+  datasource:
+#    url: jdbc:h2:file:./camunda-h2-database
+    url: jdbc:mysql://localhost:3306/camunda
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+camunda.bpm.admin-user:
+  id: root
+  password: Root1q2w
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.github.jgzl.*.domain
