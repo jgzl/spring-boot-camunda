@@ -6,10 +6,15 @@ import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.core.io.ClassPathResource;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 public class UserConvertTest {
@@ -40,5 +45,18 @@ public class UserConvertTest {
         log.info("userDo:{}",userDo);
         UserVo userVo = UserConvert.INSTANCE.convert(userDo);
         log.info("userVo:{}",userVo);
+    }
+
+    @Test
+    void parseXml(){
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        try {
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            ClassPathResource classPathResource = new ClassPathResource("resources/demo.xml");
+            Document document = builder.parse(classPathResource.getPath());
+            log.info("document:{}",document);
+        } catch (ParserConfigurationException | IOException | SAXException e) {
+            log.error("Factory创建Builder出现异常:{}",e.getMessage());
+        }
     }
 }
