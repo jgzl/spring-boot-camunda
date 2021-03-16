@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author lihaifeng,li7hai26@gmail.com
- * {@link com.github.jgzl.framework.config.CustomBeanFactoryPostProcessor}
- * {@code StringUtils.isNotEmpty("1234")}
+ * <p>{@link com.github.jgzl.framework.config.CustomBeanFactoryPostProcessor}
+ * <p><h1>{@code StringUtils.isNotEmpty("1234")}</h1>
  * @since 1.8
  * @version 1.0
  */
