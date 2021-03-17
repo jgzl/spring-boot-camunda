@@ -159,6 +159,9 @@
           <configFile>./src/main/resources/smart-doc.json</configFile>
           <!--指定项目名称-->
           <projectName>${project.name}</projectName>
+          <excludes>
+            <exclude>org.camunda.connect:camunda-connect-connectors-all</exclude>
+          </excludes>
         </configuration>
         <executions>
           <execution>
@@ -167,6 +170,7 @@
             <goals>
               <!--smart-doc提供了html、openapi、markdown等goal，可按需配置-->
               <goal>html</goal>
+              <goal>torna-rest</goal>
             </goals>
           </execution>
         </executions>
