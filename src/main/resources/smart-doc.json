@@ -1,3 +1,13 @@
 {
-  "outPath": "src/main/resources/static/doc/"
+  "outPath": "src/main/resources/static/doc/",
+  "serverUrl": "http://{{baseUrl}}",
+  "isStrict": false,
+  "packageFilters": "",
+  "projectName": "smart-doc",
+  "appKey": "20210318821908755150012416",
+  "appToken": "be6b13a3fda94f7fb34657ad691969c4",
+  "secret": ",UCMVL86$D&BV,qcpeYFBrvtRSV,7TE2",
+  "openUrl": "http://demo.torna.cn/api",
+  "debugEnvName":"开发环境",
+  "debugEnvUrl":"http://127.0.0.1"
 }
