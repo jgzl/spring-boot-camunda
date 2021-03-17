@@ -12,10 +12,7 @@ public class R<T> {
     private String message;
     private T data;
 
-    public <T> R<T> success(T data){
-        return new R(200,"success",data);
-    }
-    public <T> R<T> failed(T data){
-        return new R(400,"failed",data);
+    public <T> R<T> of(Integer code,String message,T data){
+        return new R(code,message,data);
     }
 }

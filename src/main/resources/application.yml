@@ -6,8 +6,6 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
-  rocket-api:
-    config-enabled: true
 camunda.bpm.admin-user:
   id: root
   password: Root1q2w
