@@ -7,6 +7,7 @@
   <groupId>com.github.jgzl</groupId>
   <artifactId>spring-boot-camunda</artifactId>
   <version>1.0.0-SNAPSHOT</version>
+  <name>Camunda工作流服务</name>
 
   <properties>
     <spring-boot.version>2.4.3</spring-boot.version>
@@ -16,6 +17,7 @@
     <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
     <org.projectlombok.version>1.18.16</org.projectlombok.version>
     <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+    <smart-doc.version>2.0.9</smart-doc.version>
   </properties>
   
   <dependencyManagement>
@@ -147,6 +149,27 @@
             </path>
           </annotationProcessorPaths>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.github.shalousun</groupId>
+        <artifactId>smart-doc-maven-plugin</artifactId>
+        <version>${smart-doc.version}</version>
+        <configuration>
+          <!--指定生成文档的使用的配置文件,配置文件放在自己的项目中-->
+          <configFile>./src/main/resources/smart-doc.json</configFile>
+          <!--指定项目名称-->
+          <projectName>${project.name}</projectName>
+        </configuration>
+        <executions>
+          <execution>
+            <!--如果不需要在执行编译时启动smart-doc，则将phase注释掉-->
+            <phase>compile</phase>
+            <goals>
+              <!--smart-doc提供了html、openapi、markdown等goal，可按需配置-->
+              <goal>html</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

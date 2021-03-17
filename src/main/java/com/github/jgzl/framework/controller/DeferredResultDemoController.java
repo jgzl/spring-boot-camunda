@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
+ * 演示异步操作控制器
  * @author lihaifeng
  * @version 1.0
  * @since 1.0
@@ -26,33 +27,38 @@ public class DeferredResultDemoController {
 
     private Map<String, DeferredResult<R<DemoVo>>> cacheMap = Maps.newConcurrentMap();
 
+    /**
+     * 演示Validator校验
+     * @param demoVo
+     * @return
+     */
     @ApiOperation(value = "演示Validator校验")
-    @RequestMapping(value = "/demo",method = {RequestMethod.POST})
+    @RequestMapping(value = "/validate",method = {RequestMethod.POST})
     public DemoVo demo(@RequestBody @Validated DemoVo demoVo){
         return demoVo;
     }
 
     /**
      * 演示DeferredResult请求数据
-     * </p><h2>{@code http://127.0.0.1:8080/fetch?requestId=1&timeout=9000}</h2>
-     * @param requestId
-     * @param timeout
+     * @apiNote 测试请求数据，同时请求
+     * @param requestId 请求id|1
+     * @param timeout 超时时间|9000
      * @return
      */
     @ApiOperation(value = "演示DeferredResult请求数据")
     @RequestMapping(value = "/fetch",method = {RequestMethod.GET})
-    public DeferredResult fetch(@RequestParam String requestId, @RequestParam Long timeout){
+    public DeferredResult<R<DemoVo>> fetch(@RequestParam String requestId, @RequestParam Long timeout){
         Optional.ofNullable(cacheMap).filter(cache->!cache.containsKey(requestId)).orElseThrow(()->new IllegalArgumentException(String.format("requestId=%s is existing!!!",requestId)));
-        DeferredResult result = new DeferredResult(timeout!=null?timeout:3000,new R<>().of(400,"超过设定的超时时间",null));
+        DeferredResult<R<DemoVo>> result = new DeferredResult(timeout!=null?timeout:3000,new R<>().of(400,"超过设定的超时时间",null));
         cacheMap.put(requestId,result);
         return result;
     }
 
     /**
      * 演示DeferredResult填写数据，模拟异步请求
-     * </p><h2>{@code http://127.0.0.1:8080/input?requestId=1&comments=测试}</h2>
-     * @param requestId
-     * @param comments
+     * @apiNote 测试填写数据，模拟异步请求
+     * @param requestId 请求id|1
+     * @param comments 备注信息|测试
      * @return
      */
     @ApiOperation(value = "演示DeferredResult填写数据，模拟异步请求")
